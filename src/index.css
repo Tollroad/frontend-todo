@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.NewFont{
+  font-family: 'Satisfy', cursive;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
