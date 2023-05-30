@@ -25,14 +25,13 @@ const Register = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredential: true,
+          withCredentials: true,
         }
       );
       toast.success(data.message);
       setisAuthenticated(true);
     } catch (error) {
-      toast.error(" some error");
-      console.log(error);
+      toast.error(error.response.data.message);
       setisAuthenticated(false);
     }
   };

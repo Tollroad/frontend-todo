@@ -8,10 +8,11 @@ import { Tilt } from "react-tilt";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isAuthenticated, setisAuthenticated } = useContext(Context);
+  const { isAuthenticated, setisAuthenticated ,loading,setloading} = useContext(Context);
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setloading(true);
     try {
       const { data } = await axios.post(
         `${server}/users/login`,
@@ -23,16 +24,16 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredential: true,
+          withCredentials: true,
         }
       );
       toast.success(data.message);
       setisAuthenticated(true);
-      console.log(data);
+      setloading(false)
     } catch (error) {
-      toast.error("some error");
-      console.log(error);
+      toast.error(error.response.data.message);
       setisAuthenticated(false);
+      setloading(false)
     }
   };
 
@@ -97,12 +98,13 @@ const Login = () => {
               </div>
               <h4 className="text-center p-2">Or</h4>
               <div className="flex justify-center">
-                <Link
+                <button
+                disabled={loading}
                   to={"/register"}
                   className="text-center  bg-orange-600 w-28 p-2 rounded-md text-lg font-bold NewFont hover:bg-black hover:text-orange-600 duration-500"
                 >
                   Sign up
-                </Link>
+                </button>
               </div>
             </form>
           </Tilt>
