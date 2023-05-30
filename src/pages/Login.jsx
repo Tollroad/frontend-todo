@@ -66,7 +66,6 @@ const Login = () => {
               </h2>
               <div className="flex justify-center p-2">
                 <input
-                  required
                   type="email"
                   value={email}
                   onChange={(e) => {
@@ -78,7 +77,6 @@ const Login = () => {
               </div>
               <div className="flex justify-center p-2">
                 <input
-                  required
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
@@ -98,13 +96,12 @@ const Login = () => {
               </div>
               <h4 className="text-center p-2">Or</h4>
               <div className="flex justify-center">
-                <button
-                disabled={loading}
+                <Link
                   to={"/register"}
                   className="text-center  bg-orange-600 w-28 p-2 rounded-md text-lg font-bold NewFont hover:bg-black hover:text-orange-600 duration-500"
                 >
                   Sign up
-                </button>
+                </Link>
               </div>
             </form>
           </Tilt>
